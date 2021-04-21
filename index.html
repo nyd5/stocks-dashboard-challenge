@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Stocks Dashboard</title>
+</head>
+<body>
+
+    <h1>My Stocks Dashboard</h1>
+
+    <h2>Inputs</h2>
+
+    <div>
+        <label>AlphaVantage API Key:</label>
+        <input type="text" name="api-key" id="my-api-key" placeholder="demo" value="demo">
+        <br>
+
+        <label>Stock:</label>
+        <select id="my-stock-selector">
+            <option value="MSFT" selected>Microsoft (MSFT)</option>
+            <option value="GOOG">Google (GOOGL)</option>
+            <option value="AAPL">Apple (AAPL)</option>
+            <option value="TSLA">Tesla (TSLA)</option>
+        </select>
+        <br>
+
+        <button id="my-submit-btn">Go!</button>
+    </div>
+
+    <hr>
+
+    <h2>Outputs</h2>
+
+    <div>
+        <p>Selected Stock: <span id="display-stock-symbol">_____________</span></p>
+        <p>Latest (Adjusted) Closing Price: <span id="display-latest-closing-price">__________</span></p>
+    </div>
+
+    <div id="dataviz-container"></div>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="text/javascript">
+
+        //
+        // When the button is clicked:
+        // ... 1) capture input values
+        // ... 2) compile the right URL given the provided inputs
+        // ... 3) fetch data from that URL
+        // ... 4) crunch the data
+        // ... 5) overwrite the HTML display values (symbol, latest close)
+        // ... 6) make a dataviz
+        //
+
+        console.log("TODO: RESPOND TO BUTTON CLICKS AND CAPTURE FORM INPUTS")
+
+        var goButton = document.getElementById("my-submit-btn")
+        var apiKey = "TODO"
+        var symbol = "TODO"
+
+        function handleClick() {
+            console.log("---------------------")
+            console.log("API and Stock data requested.")
+            apiKey = document.getElementById()
+        }
+
+        goButton.addEventListener("click", handleClick)
+
+
+        var requestUrl = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=" + symbol + "&apikey=" + apiKey
+        console.log("REQUEST URL:", requestUrl)
+
+        fetch(requestUrl)
+            .then(response => response.json())
+            .then(gradebook => {
+                console.log("GRADEBOOK", gradebook)
+                console.log("DOWNLOAD DATE:", gradebook["downloadDate"])
+                console.log("NUMBER OF STUDENTS:", gradebook["students"].length)
+                // etc...
+            }).catch(function(err){
+                console.error("OOPS", err)
+                alert("OOPS, please check your inputs and try again!")
+            })
+        console.log("THIS WILL BE LOGGED BEFORE THE DATA IS FETCHED")
+        console.log("TODO: FETCH DATA")
+
+        console.log("TODO: DISPLAY DATA")
+
+        console.log("TODO: DATAVIZ")
+
+
+
+    </script>
+</body>
+</html>

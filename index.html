@@ -12,7 +12,7 @@
 
     <div>
         <label>AlphaVantage API Key:</label>
-        <input type="text" name="api-key" id="my-api-key" placeholder="demo" value="demo">
+        <input type="text" name="api-key" id="my-api-key" placeholder="KISJZNYLO7SX1RSE" value="KISJZNYLO7SX1RSE">
         <br>
 
         <label>Stock:</label>
@@ -43,9 +43,9 @@
 
         //
         // When the button is clicked:
-        // ... 1) capture input values
-        // ... 2) compile the right URL given the provided inputs
-        // ... 3) fetch data from that URL
+        // ... 1) capture input values done
+        // ... 2) compile the right URL given the provided inputs done
+        // ... 3) fetch data from that URL done
         // ... 4) crunch the data
         // ... 5) overwrite the HTML display values (symbol, latest close)
         // ... 6) make a dataviz
@@ -58,10 +58,12 @@
         var symbol = document.getElementById("my-stock-selector").value
         var displaySymbol = document.getElementById("display-stock-symbol")
 
+        var timeSeriesClosing = []
+
         function handleClick() {
             console.log("---------------------")
             console.log("API and Stock data requested.")
-            apiKey = document.getElementById("my-api-key")
+            apiKey = document.getElementById("my-api-key").value
             symbol = document.getElementById("my-stock-selector").value
             displaySymbol.textContent = symbol
 
@@ -70,15 +72,20 @@
 
         fetch(requestUrl)
             .then(response => response.json())
-            .then(gradebook => {
-                console.log("GRADEBOOK", gradebook)
-                console.log("DOWNLOAD DATE:", gradebook["downloadDate"])
-                console.log("NUMBER OF STUDENTS:", gradebook["students"].length)
-                // etc...
+            .then(stock => {
+                console.log("STOCK", stock)
+                console.log("STOCK", stock["Time Series (Daily)"])
+
+                var element = 0
+                stock["Time Series (Daily)"][element].forEach(function(item) {
+                    console.log("success");
+                })
             }).catch(function(err){
                 console.error("OOPS", err)
                 alert("OOPS, please check your inputs and try again!")
             })
+
+
         }
 
         goButton.addEventListener("click", handleClick)

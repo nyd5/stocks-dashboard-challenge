@@ -54,19 +54,18 @@
         console.log("TODO: RESPOND TO BUTTON CLICKS AND CAPTURE FORM INPUTS")
 
         var goButton = document.getElementById("my-submit-btn")
-        var apiKey = "TODO"
-        var symbol = "TODO"
+        var apiKey = document.getElementById("my-api-key")
+        var symbol = document.getElementById("my-stock-selector").value
+        var displaySymbol = document.getElementById("display-stock-symbol")
 
         function handleClick() {
             console.log("---------------------")
             console.log("API and Stock data requested.")
-            apiKey = document.getElementById()
-        }
+            apiKey = document.getElementById("my-api-key")
+            symbol = document.getElementById("my-stock-selector").value
+            displaySymbol.textContent = symbol
 
-        goButton.addEventListener("click", handleClick)
-
-
-        var requestUrl = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=" + symbol + "&apikey=" + apiKey
+            var requestUrl = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=" + symbol + "&apikey=" + apiKey
         console.log("REQUEST URL:", requestUrl)
 
         fetch(requestUrl)
@@ -80,6 +79,12 @@
                 console.error("OOPS", err)
                 alert("OOPS, please check your inputs and try again!")
             })
+        }
+
+        goButton.addEventListener("click", handleClick)
+
+
+
         console.log("THIS WILL BE LOGGED BEFORE THE DATA IS FETCHED")
         console.log("TODO: FETCH DATA")
 
